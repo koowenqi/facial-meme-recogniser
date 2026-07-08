@@ -1,0 +1,37 @@
+Dataset downloaded from: https://www.kaggle.com/datasets/shawon10/ckplus
+
+About dataset:
+
+In this dataset, emotions are represented as images of 48x48px. When downloading, we got 3 copies of each emotion, so in Python we can run this command to delete reduntand images:
+
+import os
+import shutil
+
+ckp_directory = 'datasets/ck+/'
+
+for emotion_folder in os.listdir(ckp_directory):
+    emotion_path = os.path.join(ckp_directory, emotion_folder)
+
+    if os.path.isdir(emotion_path):
+        image_files = os.listdir(emotion_path)
+
+        image_files.sort()
+
+        for i in range(0, len(image_files)):
+            if i % 3 != 0:
+                image_to_delete = os.path.join(emotion_path, image_files[i])
+
+                os.remove(image_to_delete)
+
+
+Emotions are defined as determined index below:
+
+    0 : anger (45 samples)
+    1 : neutral (18 samples)
+    2 : disgust (59 samples)
+    3 : fear (25 samples)
+    4 : happy (69 samples)
+    5 : sadness (28 samples)
+    6 : surprise (83 samples)
+
+
